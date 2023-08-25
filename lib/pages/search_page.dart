@@ -33,7 +33,10 @@ class searchPage extends HookConsumerWidget {
               onSubmitted: (String value) async {
                 // final result = await searchRestaurant(value);
                 // setState(() => restaurants = results); //riverpodで状態管理を試してみる
-                restaurants.value = (await searchRestaurant(value))!;
+                debugPrint("Search!");
+                debugPrint(value);
+                final result = await searchRestaurant(value);
+                restaurants.value = result!;
               },
               decoration: const InputDecoration(hintText: 'キーワード検索'),
             ),
@@ -58,24 +61,22 @@ class searchPage extends HookConsumerWidget {
   Future<List<Restaurant>?> searchRestaurant(String keyword) async {
     final String KEY = dotenv.env['HOT_PEPPER_KEY'] ?? '';
 
-    var url = Uri.https('webservice.recruit.co.jp', 'hotpepper/gourmet/v1');
-    var response = await http.post(
-      url,
-      body: {'key': KEY, 'keyword': keyword, 'format': 'json'},
-    );
+    var url = Uri.https('webservice.recruit.co.jp', 'hotpepper/gourmet/v1/',
+        {'key': KEY, 'keyword': keyword, 'format': 'json'});
+    debugPrint(url.toString());
+    // var response = await http.post(
+    //   url,
+    //   body: {'key': KEY, 'keyword': keyword, 'format': 'json'},
+    // );
+    final response = await http.get(url);
+    debugPrint(response.body.toString());
 
     if (response.statusCode == 200) {
       final list = jsonDecode(response.body);
-      debugPrint(
-        list.toString(),
-      );
       final restaurants = List<Restaurant>.from(
         list['results']['shop'].map(
           (model) => Restaurant.fromJson(model),
         ),
-      );
-      debugPrint(
-        restaurants.toString(),
       );
       return restaurants;
     } else {

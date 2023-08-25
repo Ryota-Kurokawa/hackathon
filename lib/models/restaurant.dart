@@ -3,19 +3,19 @@ class Restaurant {
   Restaurant({
     required this.id,
     required this.name,
-    // required this.logoImage,
+    required this.logoImage,
   });
 
   // プロパティ
   final String id;
   final String name;
-  // final String logoImage;
+  final String logoImage;
 
   factory Restaurant.fromJson(Map<String, dynamic> json) {
     return Restaurant(
       id: json['id'] as String,
       name: json['name'] as String,
-      // logoImage: json['logo_image'],
+      logoImage: json['logo_image'],
     );
   }
 }
