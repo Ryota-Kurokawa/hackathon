@@ -8,17 +8,5 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(Start());
-}
-
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passController = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Hello World',
-      home: loginPage(),
-    );
-  }
+  runApp(loginPage());
 }
