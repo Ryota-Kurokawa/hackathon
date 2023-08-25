@@ -11,8 +11,8 @@ Future<void> main() async {
   runApp(Start());
 }
 
-class Start extends StatelessWidget {
-  const Start({super.key});
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
