@@ -16,6 +16,7 @@ dependencies:
     sdk: flutter
   flutter_riverpod:
   flutter_hooks:
+  hooks_riverpod:
   riverpod_annotation:
   google_fonts:
   flutter_slidable:
@@ -28,6 +29,7 @@ dependencies:
   web_socket_channel:
   firebase_core:
   firebase_analytics:
+  flutter_dotenv:
   firebase_auth:
   google_sign_in:
   device_preview_minus: # device_preview が開発停止中なので代わりに使う
@@ -52,6 +54,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  # assets:
-    # - images/
+  assets:
+    - .env
+  
   
