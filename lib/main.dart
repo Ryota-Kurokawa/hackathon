@@ -8,5 +8,16 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(loginPage());
+  runApp(Start());
+}
+
+class Start extends StatelessWidget {
+  const Start({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: loginPage(),
+    );
+  }
 }
