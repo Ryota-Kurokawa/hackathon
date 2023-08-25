@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:hackathon/pages/search_page.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -105,6 +108,18 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
       ),
+      // backgroundColor: Colors.orange,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.of(context).push(
+      //       MaterialPageRoute(
+      //         builder: (context) => matchingPage(),
+      //       ),
+      //     );
+      //   },
+      //   child: const Text("Next"),
+      // ),
+
     );
   }
 
