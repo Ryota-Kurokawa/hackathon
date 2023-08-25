@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon/pages/profile_page.dart';
 import 'package:hackathon/pages/signup_page.dart';
-import 'share/authenticator.dart';
+import 'package:hackathon/share/authenticator.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+class loginPage extends StatelessWidget {
+  loginPage({super.key});
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
@@ -59,7 +60,7 @@ class LoginPage extends StatelessWidget {
               if (_result == true) {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => ,
+                    builder: (context) => ProfilePage(),
                   ),
                 );
               }
