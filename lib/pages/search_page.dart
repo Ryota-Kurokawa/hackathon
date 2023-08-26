@@ -35,14 +35,15 @@ class searchPage extends HookConsumerWidget {
         ),
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => goodStoresPage(),
-                  ),
-                );
-              },
-              icon: Icon(Icons.message_outlined))
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => goodStoresPage(),
+                ),
+              );
+            },
+            icon: Icon(Icons.message_outlined),
+          ),
         ],
         backgroundColor: Color.fromARGB(255, 215, 199, 47),
       ),
