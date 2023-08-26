@@ -26,13 +26,13 @@ class searchPage extends HookConsumerWidget {
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => profileEditPage()));
             },
-            icon: Icon(Icons.account_balance_outlined)),
-        backgroundColor: Color.fromARGB(255, 215, 199, 47),
+            icon: Icon(Icons.menu)),
+        backgroundColor: Color(0xffFFAB91),
       ),
       body: Column(
         children: [
           const Padding(
-            padding: EdgeInsets.only(top: 32),
+            padding: EdgeInsets.only(top: 50),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 48, right: 48),
