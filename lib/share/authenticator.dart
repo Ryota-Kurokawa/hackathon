@@ -18,7 +18,6 @@ class authenticator {
           email: email, password: password);
       FirebaseAnalytics.instance.logEvent(name: 'create account');
     } catch (e) {
-      debugPrint('失敗！');
       return false;
     }
   }
@@ -30,7 +29,6 @@ class authenticator {
           .signInWithEmailAndPassword(email: email, password: password);
       return true;
     } catch (e) {
-      debugPrint('サインインエラー');
       return false;
     }
   }

@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hackathon/pages/list_view_page.dart';
 import 'package:hackathon/pages/search_page.dart';
 import 'pages/login_page.dart';
 import 'firebase_options.dart';
@@ -25,21 +28,23 @@ class Start extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Config(),
+      home: searchPage(),
     );
   }
 }
 
-class Config extends StatefulWidget {
+class Config extends HookWidget {
   const Config({super.key});
 
   @override
-  State<Config> createState() => _ConfigState();
-}
-
-class _ConfigState extends State<Config> {
-  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final isLogin = useState(false);
+    useEffect(() {
+      final currentUser = FirebaseAuth.instance.currentUser;
+      if (currentUser != null) {
+        isLogin.value = true;
+      }
+    });
+    return isLogin.value ? searchPage() : loginPage();
   }
 }
