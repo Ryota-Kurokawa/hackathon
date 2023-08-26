@@ -50,7 +50,7 @@ class searchPage extends HookConsumerWidget {
       body: Column(
         children: [
           const Padding(
-            padding: EdgeInsets.only(top: 32),
+            padding: EdgeInsets.only(top: 50),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 48, right: 48),
