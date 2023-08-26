@@ -1,40 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hackathon/models/restaurant.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-void main() => runApp(const CustomCardApp());
+// void toggleFavorite() {
+//   setState(
+//     () {
+//       isFavorite = !isFavorite;
+//     },
+//   );
+// }
 
-class CustomCardApp extends StatelessWidget {
-  const CustomCardApp({Key? key}) : super(key: key);
+class CustomCardWidget extends HookWidget {
+  CustomCardWidget({super.key, required Restaurant this.restaurant});
+  final Restaurant restaurant;
+  // bool isFavorite = false;
 
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: CustomCardWidget(restaurant),
-      ),
-    );
-  }
-}
-
-class CustomCardWidget extends StatefulWidget {
-  const CustomCardWidget({Key? key, required Restaurant this.restaurant})
-      : super(key: key);
-
-  @override
-  _CustomCardWidgetState createState() => _CustomCardWidgetState();
-}
-
-class _CustomCardWidgetState extends State<CustomCardWidget> {
-  bool isFavorite = false;
-
-  void toggleFavorite() {
-    setState(() {
-      isFavorite = !isFavorite;
-    });
-  }
+  // final _iconProvider = StateProvider<bool>((ref) => false);
+  // final _colorProvider = StateProvider((ref) => null);
 
   @override
   Widget build(BuildContext context) {
+    final isGood = useState<bool>(false);
     return Center(
       child: Card(
         elevation: 4, // Optional: Add elevation for a shadow effect
@@ -45,14 +32,15 @@ class _CustomCardWidgetState extends State<CustomCardWidget> {
             crossAxisAlignment: CrossAxisAlignment.center, // Center vertically
             children: <Widget>[
               const SizedBox(width: 25), // Add some left padding
-              Text(
-                'Text', // Replace with your desired text
-                style: TextStyle(
-                  fontSize: 24, // Adjust the font size as needed
-                  fontWeight:
-                      FontWeight.bold, // Adjust the font weight as needed
-                ),
-              ),
+              // Text(
+              //   'Text', // Replace with your desired text
+              //   style: TextStyle(
+              //     fontSize: 24, // Adjust the font size as needed
+              //     fontWeight:
+              //         FontWeight.bold, // Adjust the font weight as needed
+              //   ),
+              // ),
+              Image.network(restaurant.logoImage),
               const SizedBox(
                   width:
                       16), // Add some space between the text and other elements
@@ -62,17 +50,23 @@ class _CustomCardWidgetState extends State<CustomCardWidget> {
                       MainAxisAlignment.center, // Center vertically
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('Title'),
-                    Text('SubTitle'),
+                    TextButton(
+                      onPressed: () {
+                        // ここから画面に飛ぶ
+                      },
+                      child: Text(restaurant.name),
+                    ),
                   ],
                 ),
               ),
               IconButton(
                 icon: Icon(
-                  isFavorite ? Icons.favorite : Icons.favorite_border,
-                  color: isFavorite ? Colors.red : null,
+                  isGood.value ? Icons.favorite : Icons.favorite_border,
+                  color: isGood.value ? Colors.red : null,
                 ),
-                onPressed: toggleFavorite,
+                onPressed: () {
+                  isGood.value = !isGood.value;
+                },
               ),
               const SizedBox(width: 25), // Add some right padding
             ],
