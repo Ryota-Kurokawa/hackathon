@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon/pages/first_profile_page.dart';
+import 'package:hackathon/pages/search_page.dart';
 import 'package:hackathon/share/authenticator.dart';
 
 class SignupPage extends StatelessWidget {
@@ -57,10 +59,26 @@ class SignupPage extends StatelessWidget {
                 onPressed: () async {
                   if (_emailController.text.isNotEmpty &&
                       _passController.text.isNotEmpty) {
-                    authenticator.signUp(
+                    await authenticator.signUp(
                         email: _emailController.text,
                         password: _passController.text);
-                    Navigator.of(context).pop();
+
+                    var _result = await authenticator.emailSignIn(
+                        email: _emailController.text,
+                        password: _passController.text);
+                    if (_result == true) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => firstProfilePage(),
+                        ),
+                      );
+                    }
+
+                    // await Navigator.of(context).push(
+                    //   MaterialPageRoute(
+                    //     builder: (context) => searchPage(),
+                    //   ),
+                    // );
                   }
                 },
                 child: const Text('完了'),

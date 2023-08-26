@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathon/pages/search_page.dart';
 
-class ProfilePage extends StatelessWidget {
-  ProfilePage({super.key});
+class firstProfilePage extends StatelessWidget {
+  firstProfilePage({super.key});
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _oldController = TextEditingController();
   final TextEditingController _matchingGenderController =

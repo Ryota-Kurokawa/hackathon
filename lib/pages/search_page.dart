@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hackathon/models/restaurant.dart';
+import 'package:hackathon/pages/profile_edit_page.dart';
 import 'package:hackathon/widgets/restaurant-card.dart';
 import 'package:http/http.dart' as http;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -20,6 +21,12 @@ class searchPage extends HookConsumerWidget {
           'HOT PEPPER',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => profileEditPage()));
+            },
+            icon: Icon(Icons.account_balance_outlined)),
         backgroundColor: Color.fromARGB(255, 215, 199, 47),
       ),
       body: Column(

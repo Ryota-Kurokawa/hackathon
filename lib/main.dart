@@ -20,7 +20,7 @@ class Start extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: searchPage(),
+      home: loginPage(),
     );
   }
 }
