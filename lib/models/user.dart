@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class User {
   User({
     required this.name,
@@ -5,6 +7,7 @@ class User {
     required this.comment,
     required this.gender,
     required this.matchingGender,
+    required this.favoriteRestaurantsList,
   });
 
   final String name;
@@ -12,6 +15,7 @@ class User {
   final String comment;
   final String gender;
   final String matchingGender;
+  final List favoriteRestaurantsList;
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -20,6 +24,7 @@ class User {
       comment: json['comment'] as String,
       gender: json['gender'] as String,
       matchingGender: json['matchingGender'] as String,
+      favoriteRestaurantsList: json['favoriteRestaurantsList'] as List,
     );
   }
 }
