@@ -5,7 +5,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hackathon/models/restaurant.dart';
 import 'package:hackathon/pages/profile_edit_page.dart';
-import 'package:hackathon/widgets/restaurant-card.dart';
 import 'package:hackathon/widgets/restaurant_card2.dart';
 import 'package:http/http.dart' as http;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
