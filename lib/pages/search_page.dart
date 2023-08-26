@@ -70,7 +70,6 @@ class searchPage extends HookConsumerWidget {
 
     var url = Uri.https('webservice.recruit.co.jp', 'hotpepper/gourmet/v1/',
         {'key': KEY, 'keyword': keyword, 'format': 'json'});
-    debugPrint(url.toString());
     // var response = await http.post(
     //   url,
     //   body: {'key': KEY, 'keyword': keyword, 'format': 'json'},

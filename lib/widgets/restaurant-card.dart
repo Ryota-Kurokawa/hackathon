@@ -25,6 +25,7 @@ class restaurantCard extends StatelessWidget {
             Text(restaurant.id),
             Text(restaurant.name),
             Image.network(restaurant.logoImage),
+            Text(restaurant.urls)
           ],
         ),
       ),
