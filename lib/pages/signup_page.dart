@@ -23,14 +23,14 @@ class SignupPage extends StatelessWidget {
           child: Column(
             children: [
               const Padding(
-                padding: EdgeInsets.only(top: 64),
+                padding: EdgeInsets.only(top: 95),
               ),
               const Text(
-                'SignUp',
+                'サインアップ',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 12, right: 32, left: 32),
+                padding: const EdgeInsets.only(top: 12, right: 37, left: 37),
                 child: TextField(
                   controller: _emailController,
                   decoration: const InputDecoration(
@@ -41,10 +41,10 @@ class SignupPage extends StatelessWidget {
                 ),
               ),
               const Padding(
-                padding: EdgeInsets.only(top: 62),
+                padding: EdgeInsets.only(top: 25),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 32, right: 32),
+                padding: const EdgeInsets.only(left: 37, right: 37),
                 child: TextField(
                   controller: _passController,
                   decoration: const InputDecoration(
@@ -81,13 +81,20 @@ class SignupPage extends StatelessWidget {
                     // );
                   }
                 },
+                style: ElevatedButton.styleFrom(
+                  primary: const Color(0xffFFAB91),
+                  minimumSize: Size(80, 40),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25), // 丸みを持たせる半径を指定
+                  ), // ボタンの背景色を設定
+                ),
                 child: const Text('完了'),
               ),
             ],
           ),
         ),
       ),
-      backgroundColor: Color.fromARGB(255, 250, 123, 18),
+      backgroundColor: Color(0xffFFAB91),
     );
   }
 }
