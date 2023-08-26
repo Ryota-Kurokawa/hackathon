@@ -25,7 +25,10 @@ class restaurantCard extends StatelessWidget {
             Text(restaurant.id),
             Text(restaurant.name),
             Image.network(restaurant.logoImage),
-            Text(restaurant.urls)
+            Text(restaurant.urls),
+            TextButton(onPressed: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>));
+            }, child: Text(restaurant.urls))
           ],
         ),
       ),

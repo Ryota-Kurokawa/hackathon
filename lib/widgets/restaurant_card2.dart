@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon/models/restaurant.dart';
 
 void main() => runApp(const CustomCardApp());
 
@@ -9,14 +10,15 @@ class CustomCardApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: Scaffold(
-        body: CustomCardWidget(),
+        body: CustomCardWidget(restaurant),
       ),
     );
   }
 }
 
 class CustomCardWidget extends StatefulWidget {
-  const CustomCardWidget({Key? key}) : super(key: key);
+  const CustomCardWidget({Key? key, required Restaurant this.restaurant})
+      : super(key: key);
 
   @override
   _CustomCardWidgetState createState() => _CustomCardWidgetState();
