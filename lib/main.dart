@@ -8,6 +8,7 @@ import 'package:hackathon/pages/signup_page.dart';
 import 'pages/login_page.dart';
 import 'firebase_options.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:hackathon/widgets/matching_card.dart';
 import 'dart:async';
 
 Future<void> main() async {
@@ -28,7 +29,11 @@ class Start extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+<<<<<<< Updated upstream
       home: loginPage(),
+=======
+      home: Runner(),
+>>>>>>> Stashed changes
     );
   }
 }
