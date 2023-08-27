@@ -40,7 +40,6 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   webview_flutter: ^4.2.3
-  flutter_datetime_picker: ^1.5.1
 
 dev_dependencies:
   freezed:

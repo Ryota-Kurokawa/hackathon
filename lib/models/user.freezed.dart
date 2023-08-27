@@ -20,13 +20,15 @@ UserData _$UserDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserData {
+  String get uid => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get old => throw _privateConstructorUsedError;
   String get comment => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
   String get matchingGender => throw _privateConstructorUsedError;
-  List<Restaurant> get favoriteRestaurantsList =>
-      throw _privateConstructorUsedError;
+  List<String> get favoritedRestaurants =>
+      throw _privateConstructorUsedError; //id
+  List<String> get matchedUsers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,12 +42,14 @@ abstract class $UserDataCopyWith<$Res> {
       _$UserDataCopyWithImpl<$Res, UserData>;
   @useResult
   $Res call(
-      {String name,
+      {String uid,
+      String name,
       String old,
       String comment,
       String gender,
       String matchingGender,
-      List<Restaurant> favoriteRestaurantsList});
+      List<String> favoritedRestaurants,
+      List<String> matchedUsers});
 }
 
 /// @nodoc
@@ -61,14 +65,20 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? uid = null,
     Object? name = null,
     Object? old = null,
     Object? comment = null,
     Object? gender = null,
     Object? matchingGender = null,
-    Object? favoriteRestaurantsList = null,
+    Object? favoritedRestaurants = null,
+    Object? matchedUsers = null,
   }) {
     return _then(_value.copyWith(
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -89,10 +99,14 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
           ? _value.matchingGender
           : matchingGender // ignore: cast_nullable_to_non_nullable
               as String,
-      favoriteRestaurantsList: null == favoriteRestaurantsList
-          ? _value.favoriteRestaurantsList
-          : favoriteRestaurantsList // ignore: cast_nullable_to_non_nullable
-              as List<Restaurant>,
+      favoritedRestaurants: null == favoritedRestaurants
+          ? _value.favoritedRestaurants
+          : favoritedRestaurants // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      matchedUsers: null == matchedUsers
+          ? _value.matchedUsers
+          : matchedUsers // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -105,12 +119,14 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String name,
+      {String uid,
+      String name,
       String old,
       String comment,
       String gender,
       String matchingGender,
-      List<Restaurant> favoriteRestaurantsList});
+      List<String> favoritedRestaurants,
+      List<String> matchedUsers});
 }
 
 /// @nodoc
@@ -124,14 +140,20 @@ class __$$_UserDataCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? uid = null,
     Object? name = null,
     Object? old = null,
     Object? comment = null,
     Object? gender = null,
     Object? matchingGender = null,
-    Object? favoriteRestaurantsList = null,
+    Object? favoritedRestaurants = null,
+    Object? matchedUsers = null,
   }) {
     return _then(_$_UserData(
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -152,10 +174,14 @@ class __$$_UserDataCopyWithImpl<$Res>
           ? _value.matchingGender
           : matchingGender // ignore: cast_nullable_to_non_nullable
               as String,
-      favoriteRestaurantsList: null == favoriteRestaurantsList
-          ? _value._favoriteRestaurantsList
-          : favoriteRestaurantsList // ignore: cast_nullable_to_non_nullable
-              as List<Restaurant>,
+      favoritedRestaurants: null == favoritedRestaurants
+          ? _value._favoritedRestaurants
+          : favoritedRestaurants // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      matchedUsers: null == matchedUsers
+          ? _value._matchedUsers
+          : matchedUsers // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -164,17 +190,22 @@ class __$$_UserDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserData with DiagnosticableTreeMixin implements _UserData {
   const _$_UserData(
-      {required this.name,
+      {required this.uid,
+      required this.name,
       required this.old,
       required this.comment,
       required this.gender,
       required this.matchingGender,
-      required final List<Restaurant> favoriteRestaurantsList})
-      : _favoriteRestaurantsList = favoriteRestaurantsList;
+      final List<String> favoritedRestaurants = const [],
+      final List<String> matchedUsers = const []})
+      : _favoritedRestaurants = favoritedRestaurants,
+        _matchedUsers = matchedUsers;
 
   factory _$_UserData.fromJson(Map<String, dynamic> json) =>
       _$$_UserDataFromJson(json);
 
+  @override
+  final String uid;
   @override
   final String name;
   @override
@@ -185,18 +216,30 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
   final String gender;
   @override
   final String matchingGender;
-  final List<Restaurant> _favoriteRestaurantsList;
+  final List<String> _favoritedRestaurants;
   @override
-  List<Restaurant> get favoriteRestaurantsList {
-    if (_favoriteRestaurantsList is EqualUnmodifiableListView)
-      return _favoriteRestaurantsList;
+  @JsonKey()
+  List<String> get favoritedRestaurants {
+    if (_favoritedRestaurants is EqualUnmodifiableListView)
+      return _favoritedRestaurants;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_favoriteRestaurantsList);
+    return EqualUnmodifiableListView(_favoritedRestaurants);
+  }
+
+//id
+  final List<String> _matchedUsers;
+//id
+  @override
+  @JsonKey()
+  List<String> get matchedUsers {
+    if (_matchedUsers is EqualUnmodifiableListView) return _matchedUsers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_matchedUsers);
   }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserData(name: $name, old: $old, comment: $comment, gender: $gender, matchingGender: $matchingGender, favoriteRestaurantsList: $favoriteRestaurantsList)';
+    return 'UserData(uid: $uid, name: $name, old: $old, comment: $comment, gender: $gender, matchingGender: $matchingGender, favoritedRestaurants: $favoritedRestaurants, matchedUsers: $matchedUsers)';
   }
 
   @override
@@ -204,13 +247,14 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'UserData'))
+      ..add(DiagnosticsProperty('uid', uid))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('old', old))
       ..add(DiagnosticsProperty('comment', comment))
       ..add(DiagnosticsProperty('gender', gender))
       ..add(DiagnosticsProperty('matchingGender', matchingGender))
-      ..add(DiagnosticsProperty(
-          'favoriteRestaurantsList', favoriteRestaurantsList));
+      ..add(DiagnosticsProperty('favoritedRestaurants', favoritedRestaurants))
+      ..add(DiagnosticsProperty('matchedUsers', matchedUsers));
   }
 
   @override
@@ -218,26 +262,31 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserData &&
+            (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.old, old) || other.old == old) &&
             (identical(other.comment, comment) || other.comment == comment) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.matchingGender, matchingGender) ||
                 other.matchingGender == matchingGender) &&
-            const DeepCollectionEquality().equals(
-                other._favoriteRestaurantsList, _favoriteRestaurantsList));
+            const DeepCollectionEquality()
+                .equals(other._favoritedRestaurants, _favoritedRestaurants) &&
+            const DeepCollectionEquality()
+                .equals(other._matchedUsers, _matchedUsers));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      uid,
       name,
       old,
       comment,
       gender,
       matchingGender,
-      const DeepCollectionEquality().hash(_favoriteRestaurantsList));
+      const DeepCollectionEquality().hash(_favoritedRestaurants),
+      const DeepCollectionEquality().hash(_matchedUsers));
 
   @JsonKey(ignore: true)
   @override
@@ -255,15 +304,19 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
 
 abstract class _UserData implements UserData {
   const factory _UserData(
-      {required final String name,
+      {required final String uid,
+      required final String name,
       required final String old,
       required final String comment,
       required final String gender,
       required final String matchingGender,
-      required final List<Restaurant> favoriteRestaurantsList}) = _$_UserData;
+      final List<String> favoritedRestaurants,
+      final List<String> matchedUsers}) = _$_UserData;
 
   factory _UserData.fromJson(Map<String, dynamic> json) = _$_UserData.fromJson;
 
+  @override
+  String get uid;
   @override
   String get name;
   @override
@@ -275,7 +328,9 @@ abstract class _UserData implements UserData {
   @override
   String get matchingGender;
   @override
-  List<Restaurant> get favoriteRestaurantsList;
+  List<String> get favoritedRestaurants;
+  @override //id
+  List<String> get matchedUsers;
   @override
   @JsonKey(ignore: true)
   _$$_UserDataCopyWith<_$_UserData> get copyWith =>

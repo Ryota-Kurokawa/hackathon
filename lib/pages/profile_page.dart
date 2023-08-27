@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hackathon/pages/search_page.dart';
 
-class firstProfilePage extends StatelessWidget {
-  firstProfilePage({super.key});
+class ProfilePage extends StatelessWidget {
+  ProfilePage({super.key});
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _oldController = TextEditingController();
   final TextEditingController _matchingGenderController =
@@ -15,26 +17,22 @@ class firstProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 0xFF, 0xAB, 0x91),
       body: Center(
         child: Container(
-          margin: const EdgeInsets.only(top: 10),
           height: 600,
           width: 300,
-          //color: Color.fromARGB(255, 250, 123, 18),
+          color: Colors.white,
           child: Column(
             children: [
               const Padding(
                 padding: EdgeInsets.only(top: 40),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 40, right: 40),
+                padding: const EdgeInsets.only(left: 80, right: 80),
                 child: TextField(
                   controller: _nameController,
                   decoration: const InputDecoration(
-                    hintText: ('名前'),
-                    filled: true,
-                    fillColor: Color.fromARGB(255, 243, 229, 225),
+                    label: Text('名前'),
                   ),
                 ),
               ),
@@ -42,13 +40,11 @@ class firstProfilePage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 40),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 40, right: 40),
+                padding: const EdgeInsets.only(left: 80, right: 80),
                 child: TextField(
                   controller: _oldController,
                   decoration: const InputDecoration(
-                    hintText: ('年齢'),
-                    filled: true,
-                    fillColor: Color.fromARGB(255, 243, 229, 225),
+                    label: Text('年齢'),
                   ),
                 ),
               ),
@@ -56,13 +52,11 @@ class firstProfilePage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 40),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 40, right: 40),
+                padding: const EdgeInsets.only(left: 80, right: 80),
                 child: TextField(
                   controller: _genderController,
                   decoration: const InputDecoration(
-                    hintText: ('性別(男性or女性)'),
-                    filled: true,
-                    fillColor: Color.fromARGB(255, 243, 229, 225),
+                    label: Text('性別'),
                   ),
                 ),
               ),
@@ -70,16 +64,11 @@ class firstProfilePage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 40),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 40, right: 40),
+                padding: const EdgeInsets.only(left: 80, right: 80),
                 child: TextField(
-                  keyboardType: TextInputType.multiline,
-                  maxLines: 4,
                   controller: _commentontCroller,
                   decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.all(10),
-                    hintText: ('自己紹介'),
-                    filled: true,
-                    fillColor: Color.fromARGB(255, 243, 229, 225),
+                    label: Text('自己紹介'),
                   ),
                 ),
               ),
@@ -87,18 +76,15 @@ class firstProfilePage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 40),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 40, right: 40),
+                padding: const EdgeInsets.only(left: 80, right: 80),
                 child: TextField(
                   controller: _matchingGenderController,
                   decoration: const InputDecoration(
-                    helperText: ('希望があれば男性or女性'),
-                    hintText: ('対象性別'),
-                    filled: true,
-                    fillColor: Color.fromARGB(255, 243, 229, 225),
+                    label: Text('対象性別'),
                   ),
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(top: 40),
               ),
               ElevatedButton(
@@ -111,7 +97,7 @@ class firstProfilePage extends StatelessWidget {
                       _commentontCroller.text);
                   await Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const searchPage(),
+                      builder: (context) => searchPage(),
                     ),
                   );
                 },
@@ -121,6 +107,17 @@ class firstProfilePage extends StatelessWidget {
           ),
         ),
       ),
+      // backgroundColor: Colors.orange,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.of(context).push(
+      //       MaterialPageRoute(
+      //         builder: (context) => matchingPage(),
+      //       ),
+      //     );
+      //   },
+      //   child: const Text("Next"),
+      // ),
     );
   }
 
@@ -138,7 +135,6 @@ class firstProfilePage extends StatelessWidget {
       'matchingGender': matchingGender,
       'comment': comment,
       'email': FirebaseAuth.instance.currentUser!.email.toString(),
-      'favoriteRestaurantsList': []
     });
   }
 }
