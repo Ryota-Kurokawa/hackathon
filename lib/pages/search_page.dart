@@ -54,11 +54,7 @@ class searchPage extends HookConsumerWidget {
               ),
             );
           },
-<<<<<<< Updated upstream
-          icon: const Icon(Icons.account_balance_outlined),
-=======
           icon: Icon(Icons.menu),
->>>>>>> Stashed changes
         ),
         actions: [
           IconButton(
@@ -72,11 +68,7 @@ class searchPage extends HookConsumerWidget {
             icon: const Icon(Icons.message_outlined),
           ),
         ],
-<<<<<<< Updated upstream
-        backgroundColor: const Color.fromARGB(255, 215, 199, 47),
-=======
         backgroundColor: Color.fromARGB(255, 0xFF, 0xAB, 0x91),
->>>>>>> Stashed changes
       ),
       body: Column(
         children: [
@@ -124,17 +116,6 @@ class searchPage extends HookConsumerWidget {
           ),
         ],
       ),
-<<<<<<< Updated upstream
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const successMatchingPage(),
-            ),
-          );
-        },
-        child: const Text('matching成功'),
-=======
       floatingActionButton: SizedBox(
         width: 100,
         height: 150,
@@ -152,7 +133,6 @@ class searchPage extends HookConsumerWidget {
             size: 50,
           ),
         ),
->>>>>>> Stashed changes
       ),
     );
   }
