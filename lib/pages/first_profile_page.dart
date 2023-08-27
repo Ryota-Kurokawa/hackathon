@@ -112,6 +112,7 @@ class firstProfilePage extends StatelessWidget {
                   await Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => const searchPage(),
+
                     ),
                   );
                 },

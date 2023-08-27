@@ -1,13 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hackathon/models/user.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hackathon/pages/search_page.dart';
 
-class profileEditPage extends HookWidget {
-  profileEditPage({super.key});
+class ProfilePage extends StatelessWidget {
+  ProfilePage({super.key});
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _oldController = TextEditingController();
   final TextEditingController _matchingGenderController =
@@ -15,35 +14,12 @@ class profileEditPage extends HookWidget {
   final TextEditingController _commentontCroller = TextEditingController();
   final TextEditingController _genderController = TextEditingController();
   final db = FirebaseFirestore.instance;
-
   @override
   Widget build(BuildContext context) {
-    final user = useState<UserData?>(null);
-
-    Future fetchUserData() async {
-      final uid = FirebaseAuth.instance.currentUser?.uid;
-      if (uid == null) {
-        return;
-      }
-      final userDoc = await db.collection('users').doc(uid).get();
-      user.value = UserData.fromJson(userDoc.data()!);
-      _nameController.text = user.value!.name;
-      _oldController.text = user.value!.old;
-      _matchingGenderController.text = user.value!.matchingGender;
-      _commentontCroller.text = user.value!.comment;
-      _genderController.text = user.value!.gender;
-    }
-
-    useEffect(() {
-      fetchUserData();
-      return;
-    }, []);
-
     return Scaffold(
-      backgroundColor: const Color(0xffFFAB91),
       body: Center(
         child: Container(
-          height: 620,
+          height: 600,
           width: 300,
           color: Colors.white,
           child: Column(
@@ -52,7 +28,7 @@ class profileEditPage extends HookWidget {
                 padding: EdgeInsets.only(top: 40),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 50, right: 50),
+                padding: const EdgeInsets.only(left: 80, right: 80),
                 child: TextField(
                   controller: _nameController,
                   decoration: const InputDecoration(
@@ -88,7 +64,7 @@ class profileEditPage extends HookWidget {
                 padding: EdgeInsets.only(top: 40),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 50, right: 50),
+                padding: const EdgeInsets.only(left: 80, right: 80),
                 child: TextField(
                   controller: _commentontCroller,
                   decoration: const InputDecoration(
@@ -108,29 +84,20 @@ class profileEditPage extends HookWidget {
                   ),
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(top: 40),
               ),
               ElevatedButton(
                 onPressed: () async {
-                  if (_nameController.text.isEmpty ||
-                      _oldController.text.isEmpty ||
-                      _genderController.text.isEmpty ||
-                      _matchingGenderController.text.isEmpty ||
-                      _commentontCroller.text.isEmpty) {
-                    return;
-                  }
-
                   setprofile(
-                    _nameController.text,
-                    _oldController.text,
-                    _genderController.text,
-                    _matchingGenderController.text,
-                    _commentontCroller.text,
-                  );
+                      _nameController.text,
+                      _oldController.text,
+                      _genderController.text,
+                      _matchingGenderController.text,
+                      _commentontCroller.text);
                   await Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const searchPage(),
+                      builder: (context) => searchPage(),
                     ),
                   );
                 },
@@ -140,6 +107,17 @@ class profileEditPage extends HookWidget {
           ),
         ),
       ),
+      // backgroundColor: Colors.orange,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.of(context).push(
+      //       MaterialPageRoute(
+      //         builder: (context) => matchingPage(),
+      //       ),
+      //     );
+      //   },
+      //   child: const Text("Next"),
+      // ),
     );
   }
 
@@ -150,7 +128,7 @@ class profileEditPage extends HookWidget {
         .doc(
           FirebaseAuth.instance.currentUser!.uid.toString(),
         )
-        .update({
+        .set({
       'name': name,
       'old': old,
       'gender': gender,
