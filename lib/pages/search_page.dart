@@ -45,6 +45,7 @@ class searchPage extends HookConsumerWidget {
           'HOT PEPPER',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        centerTitle: true,
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).push(
@@ -53,7 +54,11 @@ class searchPage extends HookConsumerWidget {
               ),
             );
           },
+<<<<<<< Updated upstream
           icon: const Icon(Icons.account_balance_outlined),
+=======
+          icon: Icon(Icons.menu),
+>>>>>>> Stashed changes
         ),
         actions: [
           IconButton(
@@ -67,7 +72,11 @@ class searchPage extends HookConsumerWidget {
             icon: const Icon(Icons.message_outlined),
           ),
         ],
+<<<<<<< Updated upstream
         backgroundColor: const Color.fromARGB(255, 215, 199, 47),
+=======
+        backgroundColor: Color.fromARGB(255, 0xFF, 0xAB, 0x91),
+>>>>>>> Stashed changes
       ),
       body: Column(
         children: [
@@ -77,11 +86,25 @@ class searchPage extends HookConsumerWidget {
           Padding(
             padding: const EdgeInsets.only(left: 48, right: 48),
             child: TextField(
+              cursorColor: Color.fromARGB(255, 251, 181, 160),
               onSubmitted: (String value) async {
                 final result = await searchRestaurant(value);
                 restaurants.value = result!;
               },
-              decoration: const InputDecoration(hintText: 'キーワード検索'),
+              decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 251, 181, 160),
+                      )),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 251, 181, 160),
+                      )),
+                  prefixIcon: Icon(Icons.search,
+                      color: const Color.fromARGB(255, 116, 107, 107)),
+                  hintText: 'キーワード検索'),
             ),
           ),
           const Padding(
@@ -101,6 +124,7 @@ class searchPage extends HookConsumerWidget {
           ),
         ],
       ),
+<<<<<<< Updated upstream
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
@@ -110,6 +134,25 @@ class searchPage extends HookConsumerWidget {
           );
         },
         child: const Text('matching成功'),
+=======
+      floatingActionButton: SizedBox(
+        width: 100,
+        height: 150,
+        child: FloatingActionButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => successMatchingPage(),
+              ),
+            );
+          },
+          backgroundColor: Color.fromARGB(255, 251, 181, 160),
+          child: Icon(
+            Icons.handshake,
+            size: 50,
+          ),
+        ),
+>>>>>>> Stashed changes
       ),
     );
   }
