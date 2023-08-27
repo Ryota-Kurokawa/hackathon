@@ -1,14 +1,12 @@
 name: hackathon
 description: A new Flutter project.
 
-publish_to: 'none'
-
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.6 <4.0.0'
-
+  sdk: ">=3.0.6 <4.0.0"
 
 dependencies:
   arkit_plugin:
@@ -16,6 +14,7 @@ dependencies:
     sdk: flutter
   flutter_riverpod:
   flutter_hooks:
+  hooks_riverpod:
   riverpod_annotation:
   google_fonts:
   flutter_slidable:
@@ -28,6 +27,7 @@ dependencies:
   web_socket_channel:
   firebase_core:
   firebase_analytics:
+  flutter_dotenv:
   firebase_auth:
   google_sign_in:
   device_preview_minus: # device_preview が開発停止中なので代わりに使う
@@ -39,6 +39,7 @@ dependencies:
   url_launcher:
   flutter_web_plugins:
     sdk: flutter
+  webview_flutter: ^4.2.3
 
 dev_dependencies:
   freezed:
@@ -53,5 +54,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - images/
-  
+    - .env
+    - assets/images/logo.png

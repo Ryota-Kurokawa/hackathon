@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon/pages/first_profile_page.dart';
 import 'package:hackathon/share/authenticator.dart';
 
 class SignupPage extends StatelessWidget {
@@ -21,14 +22,14 @@ class SignupPage extends StatelessWidget {
           child: Column(
             children: [
               const Padding(
-                padding: EdgeInsets.only(top: 64),
+                padding: EdgeInsets.only(top: 95),
               ),
               const Text(
-                'SignUp',
+                'サインアップ',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 12, right: 32, left: 32),
+                padding: const EdgeInsets.only(top: 12, right: 37, left: 37),
                 child: TextField(
                   controller: _emailController,
                   decoration: const InputDecoration(
@@ -39,10 +40,10 @@ class SignupPage extends StatelessWidget {
                 ),
               ),
               const Padding(
-                padding: EdgeInsets.only(top: 62),
+                padding: EdgeInsets.only(top: 25),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 32, right: 32),
+                padding: const EdgeInsets.only(left: 37, right: 37),
                 child: TextField(
                   controller: _passController,
                   decoration: const InputDecoration(
@@ -57,19 +58,42 @@ class SignupPage extends StatelessWidget {
                 onPressed: () async {
                   if (_emailController.text.isNotEmpty &&
                       _passController.text.isNotEmpty) {
-                    authenticator.signUp(
+                    await authenticator.signUp(
                         email: _emailController.text,
                         password: _passController.text);
-                    Navigator.of(context).pop();
+
+                    var _result = await authenticator.emailSignIn(
+                        email: _emailController.text,
+                        password: _passController.text);
+                    if (_result == true) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => firstProfilePage(),
+                        ),
+                      );
+                    }
+
+                    // await Navigator.of(context).push(
+                    //   MaterialPageRoute(
+                    //     builder: (context) => searchPage(),
+                    //   ),
+                    // );
                   }
                 },
+                style: ElevatedButton.styleFrom(
+                  primary: const Color(0xffFFAB91),
+                  minimumSize: Size(80, 40),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25), // 丸みを持たせる半径を指定
+                  ), // ボタンの背景色を設定
+                ),
                 child: const Text('完了'),
               ),
             ],
           ),
         ),
       ),
-      backgroundColor: Color.fromARGB(255, 250, 123, 18),
+      backgroundColor: Color(0xffFFAB91),
     );
   }
 }

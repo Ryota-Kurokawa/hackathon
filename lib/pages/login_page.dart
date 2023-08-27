@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hackathon/pages/profile_page.dart';
+import 'package:hackathon/pages/first_profile_page.dart';
+import 'package:hackathon/pages/search_page.dart';
 import 'package:hackathon/pages/signup_page.dart';
 import 'package:hackathon/share/authenticator.dart';
 
@@ -15,30 +16,37 @@ class loginPage extends StatelessWidget {
       body: Column(
         children: [
           const Padding(
-            padding: EdgeInsets.only(top: 200),
+            padding: EdgeInsets.only(top: 180),
+          ),
+          Icon(
+            Icons.account_circle, // ここでアイコンを使用
+            size: 100, // アイコンのサイズを調整
+          ),
+          SizedBox(
+            height: 10, // 空白の高さを調整
           ),
           const Center(
             child: Text(
-              'Hello World',
-              style: TextStyle(fontSize: 50),
+              'ログイン',
+              style: TextStyle(fontSize: 25),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 62, vertical: 52),
+            padding: const EdgeInsets.symmetric(horizontal: 62, vertical: 22),
             child: TextField(
               controller: _emailController,
               decoration: const InputDecoration(hintText: 'email'),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 62, vertical: 36),
+            padding: const EdgeInsets.symmetric(horizontal: 62, vertical: 5),
             child: TextField(
               controller: _passController,
               decoration: const InputDecoration(hintText: 'password'),
             ),
           ),
           const Padding(
-            padding: EdgeInsets.only(top: 80),
+            padding: EdgeInsets.only(top: 20),
           ),
           TextButton(
             onPressed: () {
@@ -50,7 +58,7 @@ class loginPage extends StatelessWidget {
             },
             child: const Text(
               'make your account',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 17),
             ),
           ),
           ElevatedButton(
@@ -60,15 +68,15 @@ class loginPage extends StatelessWidget {
               if (_result == true) {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => ProfilePage(),
+                    builder: (context) => searchPage(),
                   ),
                 );
               }
             },
             child: Text(
-              'login',
+              'Login',
               style: TextStyle(
-                fontSize: 40,
+                fontSize: 17,
               ),
             ),
           ),
