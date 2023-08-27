@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hackathon/pages/first_profile_page.dart';
 import 'package:hackathon/pages/search_page.dart';
 import 'package:hackathon/pages/signup_page.dart';
 import 'package:hackathon/share/authenticator.dart';
@@ -18,12 +17,12 @@ class loginPage extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.only(top: 180),
           ),
-          Icon(
-            Icons.account_circle, // ここでアイコンを使用
-            size: 100, // アイコンのサイズを調整
+          const Icon(
+            Icons.account_circle,
+            size: 100,
           ),
-          SizedBox(
-            height: 10, // 空白の高さを調整
+          const SizedBox(
+            height: 10,
           ),
           const Center(
             child: Text(
@@ -63,17 +62,17 @@ class loginPage extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () async {
-              var _result = await authenticator.emailSignIn(
+              final _result = await authenticator.emailSignIn(
                   email: _emailController.text, password: _passController.text);
               if (_result == true) {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => searchPage(),
+                    builder: (context) => const searchPage(),
                   ),
                 );
               }
             },
-            child: Text(
+            child: const Text(
               'Login',
               style: TextStyle(
                 fontSize: 17,
