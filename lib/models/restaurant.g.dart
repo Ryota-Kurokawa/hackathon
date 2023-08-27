@@ -11,7 +11,11 @@ _$_Restaurant _$$_RestaurantFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       name: json['name'] as String,
       logoImage: json['logo_image'] as String? ?? "",
-      urls: json['urls']['pc'],
+      url: json['url'],
+      favoritedUsers: (json['favoritedUsers'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$_RestaurantToJson(_$_Restaurant instance) =>
@@ -19,5 +23,6 @@ Map<String, dynamic> _$$_RestaurantToJson(_$_Restaurant instance) =>
       'id': instance.id,
       'name': instance.name,
       'logo_image': instance.logoImage,
-      'urls': {'pc': instance.urls},
+      'url': instance.url,
+      'favoritedUsers': instance.favoritedUsers,
     };

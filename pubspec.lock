@@ -264,7 +264,6 @@ packages:
       sha256: "09f0086b65814df66ee55f2fdac51111fd1cd3299f5ae4001f3433ed1675d5f4"
       url: "https://pub.dev"
     source: hosted
-
     version: "1.0.0"
   envied:
     dependency: "direct main"

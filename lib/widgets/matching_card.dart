@@ -80,8 +80,7 @@ class MatchingCard extends HookWidget {
                   ],
                 ),
               ),
-
-              const SizedBox(width: 25), // Add some right padding
+              const SizedBox(width: 25),
             ],
           ),
         ),
