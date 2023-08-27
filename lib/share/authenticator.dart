@@ -1,6 +1,5 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 class authenticator {
   // インスタンス変数 _firebaseAuthを作成しその中にFirebaseAuth.instanceを打ち込む
@@ -25,8 +24,8 @@ class authenticator {
   static Future<dynamic> emailSignIn(
       {required String email, required String password}) async {
     try {
-      final UserCredential _result = await _firebaseAuth
-          .signInWithEmailAndPassword(email: email, password: password);
+      await _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
       return true;
     } catch (e) {
       return false;

@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hackathon/models/restaurant.dart';
 import 'package:hackathon/pages/search_page.dart';
+import 'package:hackathon/models/restaurant.dart';
 
 class firstProfilePage extends StatelessWidget {
   firstProfilePage({super.key});
@@ -122,6 +124,7 @@ class firstProfilePage extends StatelessWidget {
       'matchingGender': matchingGender,
       'comment': comment,
       'email': FirebaseAuth.instance.currentUser!.email.toString(),
+      'favoriteRestaurantsList': []
     });
   }
 }

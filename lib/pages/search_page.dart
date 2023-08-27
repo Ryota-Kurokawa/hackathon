@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -11,12 +13,32 @@ import 'package:hackathon/widgets/restaurant_card2.dart';
 import 'package:http/http.dart' as http;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../models/user.dart';
+
 class searchPage extends HookConsumerWidget {
-  searchPage({super.key});
+  const searchPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final restaurants = useState<List<Restaurant>>([]);
+    final favoritedRestaurants = useState<List<Restaurant>>([]);
+
+    Future<void> fetchUserData() async {
+      final userDoc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .get();
+      print(userDoc.toString());
+      final user = UserData.fromJson(userDoc.data()!);
+      print(user.toString());
+      favoritedRestaurants.value = user.favoriteRestaurantsList;
+    }
+
+    useEffect(() {
+      fetchUserData();
+      return;
+    }, []);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -31,21 +53,21 @@ class searchPage extends HookConsumerWidget {
               ),
             );
           },
-          icon: Icon(Icons.account_balance_outlined),
+          icon: const Icon(Icons.account_balance_outlined),
         ),
         actions: [
           IconButton(
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => goodStoresPage(),
+                  builder: (context) => const goodStoresPage(),
                 ),
               );
             },
-            icon: Icon(Icons.message_outlined),
+            icon: const Icon(Icons.message_outlined),
           ),
         ],
-        backgroundColor: Color.fromARGB(255, 215, 199, 47),
+        backgroundColor: const Color.fromARGB(255, 215, 199, 47),
       ),
       body: Column(
         children: [
@@ -67,11 +89,14 @@ class searchPage extends HookConsumerWidget {
           ),
           Expanded(
             child: ListView(
-              children: restaurants.value
-                  .map(
-                    (restaurant) => CustomCardWidget(restaurant: restaurant),
-                  )
-                  .toList(),
+              children: restaurants.value.map((restaurant) {
+                return CustomCardWidget(
+                  restaurant: restaurant,
+                  isFavorited: favoritedRestaurants.value
+                      .where((data) => data.id == restaurant.id)
+                      .isNotEmpty,
+                );
+              }).toList(),
             ),
           ),
         ],
@@ -80,11 +105,11 @@ class searchPage extends HookConsumerWidget {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => successMatchingPage(),
+              builder: (context) => const successMatchingPage(),
             ),
           );
         },
-        child: Text('matching成功'),
+        child: const Text('matching成功'),
       ),
     );
   }
@@ -94,10 +119,6 @@ class searchPage extends HookConsumerWidget {
 
     var url = Uri.https('webservice.recruit.co.jp', 'hotpepper/gourmet/v1/',
         {'key': KEY, 'keyword': keyword, 'count': '20', 'format': 'json'});
-    // var response = await http.post(
-    //   url,
-    //   body: {'key': KEY, 'keyword': keyword, 'format': 'json'},
-    // );
     final response = await http.get(url);
     if (response.statusCode == 200) {
       final list = jsonDecode(response.body);

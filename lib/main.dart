@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hackathon/pages/list_view_page.dart';
 import 'package:hackathon/pages/search_page.dart';
 import 'pages/login_page.dart';
 import 'firebase_options.dart';
@@ -28,7 +27,7 @@ class Start extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: searchPage(),
+      home: loginPage(),
     );
   }
 }
@@ -44,6 +43,7 @@ class Config extends HookWidget {
       if (currentUser != null) {
         isLogin.value = true;
       }
+      return;
     });
     return isLogin.value ? searchPage() : loginPage();
   }
