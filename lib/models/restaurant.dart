@@ -1,5 +1,16 @@
+<<<<<<< Updated upstream
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
+=======
+class Restaurant {
+  // コンストラクタ
+  Restaurant({
+    required this.id,
+    required this.name,
+    required this.logoImage,
+    required this.urls,
+  });
+>>>>>>> Stashed changes
 
 part 'restaurant.freezed.dart';
 part 'restaurant.g.dart';

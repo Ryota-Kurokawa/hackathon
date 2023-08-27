@@ -27,7 +27,7 @@ class profileEditPage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 40),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 80, right: 80),
+                padding: const EdgeInsets.only(left: 50, right: 50),
                 child: TextField(
                   controller: _nameController,
                   decoration: const InputDecoration(
@@ -63,7 +63,7 @@ class profileEditPage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 40),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 80, right: 80),
+                padding: const EdgeInsets.only(left: 50, right: 50),
                 child: TextField(
                   controller: _commentontCroller,
                   decoration: const InputDecoration(
