@@ -28,6 +28,9 @@ class searchPage extends HookConsumerWidget {
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get();
+      if (!userDoc.exists) {
+        return;
+      }
       print(userDoc.toString());
       final user = UserData.fromJson(userDoc.data()!);
       print(user.toString());
@@ -49,7 +52,7 @@ class searchPage extends HookConsumerWidget {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => profileEditPage(),
+                builder: (context) => ProfileEditPage(),
               ),
             );
           },

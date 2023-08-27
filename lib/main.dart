@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hackathon/pages/profile_edit_page.dart';
 import 'package:hackathon/pages/search_page.dart';
 import 'package:hackathon/pages/signup_page.dart';
 import 'pages/login_page.dart';
@@ -29,7 +30,7 @@ class Start extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: loginPage(),
+      home: Config(),
     );
   }
 }
@@ -47,6 +48,6 @@ class Config extends HookWidget {
       }
       return;
     });
-    return isLogin.value ? searchPage() : loginPage();
+    return isLogin.value ? ProfileEditPage() : loginPage();
   }
 }
