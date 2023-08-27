@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hackathon/pages/list_view_page.dart';
 import 'package:hackathon/pages/search_page.dart';
+import 'package:hackathon/pages/signup_page.dart';
 import 'pages/login_page.dart';
 import 'firebase_options.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -28,7 +29,7 @@ class Start extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: searchPage(),
+      home: loginPage(),
     );
   }
 }

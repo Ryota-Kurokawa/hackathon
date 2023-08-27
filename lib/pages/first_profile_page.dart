@@ -15,22 +15,26 @@ class firstProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 0xFF, 0xAB, 0x91),
       body: Center(
         child: Container(
+          margin: const EdgeInsets.only(top: 10),
           height: 600,
           width: 300,
-          color: Colors.white,
+          //color: Color.fromARGB(255, 250, 123, 18),
           child: Column(
             children: [
               const Padding(
                 padding: EdgeInsets.only(top: 40),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 80, right: 80),
+                padding: const EdgeInsets.only(left: 40, right: 40),
                 child: TextField(
                   controller: _nameController,
                   decoration: const InputDecoration(
-                    label: Text('名前'),
+                    hintText: ('名前'),
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 243, 229, 225),
                   ),
                 ),
               ),
@@ -38,11 +42,13 @@ class firstProfilePage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 40),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 80, right: 80),
+                padding: const EdgeInsets.only(left: 40, right: 40),
                 child: TextField(
                   controller: _oldController,
                   decoration: const InputDecoration(
-                    label: Text('年齢'),
+                    hintText: ('年齢'),
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 243, 229, 225),
                   ),
                 ),
               ),
@@ -50,11 +56,13 @@ class firstProfilePage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 40),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 80, right: 80),
+                padding: const EdgeInsets.only(left: 40, right: 40),
                 child: TextField(
                   controller: _genderController,
                   decoration: const InputDecoration(
-                    label: Text('性別'),
+                    hintText: ('性別(男性or女性)'),
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 243, 229, 225),
                   ),
                 ),
               ),
@@ -62,11 +70,16 @@ class firstProfilePage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 40),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 80, right: 80),
+                padding: const EdgeInsets.only(left: 40, right: 40),
                 child: TextField(
+                  keyboardType: TextInputType.multiline,
+                  maxLines: 4,
                   controller: _commentontCroller,
                   decoration: const InputDecoration(
-                    label: Text('自己紹介'),
+                    contentPadding: EdgeInsets.all(10),
+                    hintText: ('自己紹介'),
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 243, 229, 225),
                   ),
                 ),
               ),
@@ -74,16 +87,19 @@ class firstProfilePage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 40),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 80, right: 80),
+                padding: const EdgeInsets.only(left: 40, right: 40),
                 child: TextField(
                   controller: _matchingGenderController,
                   decoration: const InputDecoration(
-                    label: Text('対象性別'),
+                    helperText: ('希望があれば男性or女性'),
+                    hintText: ('対象性別'),
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 243, 229, 225),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 40),
+                padding: const EdgeInsets.only(top: 40),
               ),
               ElevatedButton(
                 onPressed: () async {
