@@ -29,11 +29,7 @@ class Start extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-<<<<<<< Updated upstream
       home: loginPage(),
-=======
-      home: Runner(),
->>>>>>> Stashed changes
     );
   }
 }
