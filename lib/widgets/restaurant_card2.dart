@@ -109,10 +109,11 @@ class CustomCardWidget extends HookWidget {
                         'favoriteRestaurantsList': FieldValue.arrayRemove(
                           [
                             Restaurant(
-                                id: restaurant.id,
-                                name: restaurant.name,
-                                logoImage: restaurant.logoImage,
-                                urls: restaurant.urls)
+                                    id: restaurant.id,
+                                    name: restaurant.name,
+                                    logoImage: restaurant.logoImage,
+                                    urls: restaurant.urls)
+                                .toJson()
                           ],
                         ),
                       },
