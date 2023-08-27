@@ -5,14 +5,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hackathon/models/restaurant.dart';
 import 'package:hackathon/pages/article_screen.dart';
 
-// void toggleFavorite() {
-//   setState(
-//     () {
-//       isFavorite = !isFavorite;
-//     },
-//   );
-// }
-
 class CustomCardWidget extends HookWidget {
   const CustomCardWidget({
     super.key,
@@ -23,48 +15,32 @@ class CustomCardWidget extends HookWidget {
   final Restaurant restaurant;
   final bool isFavorited;
 
-  // final _iconProvider = StateProvider<bool>((ref) => false);
-  // final _colorProvider = StateProvider((ref) => null);
-
   @override
   Widget build(BuildContext context) {
     final isGood = useState<bool>(isFavorited);
     return Center(
       child: Card(
-        elevation: 4, // Optional: Add elevation for a shadow effect
+        elevation: 4,
         child: Container(
-          width: 370, // Adjust the width as needed
-          height: 150, // Adjust the height as needed
+          width: 370,
+          height: 150,
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center, // Center vertically
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              const SizedBox(width: 25), // Add some left padding
-              // Text(
-              //   'Text', // Replace with your desired text
-              //   style: TextStyle(
-              //     fontSize: 24, // Adjust the font size as needed
-              //     fontWeight:
-              //         FontWeight.bold, // Adjust the font weight as needed
-              //   ),
-              // ),
+              const SizedBox(width: 25),
               Image.network(restaurant.logoImage),
-
-              const SizedBox(
-                  width:
-                      16), // Add some space between the text and other elements
+              const SizedBox(width: 16),
               Expanded(
                 child: Column(
-                  mainAxisAlignment:
-                      MainAxisAlignment.center, // Center vertically
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     TextButton(
                       onPressed: () {
-                        // ここから画面に飛ぶ
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) =>
-                                ArticleScreen(url: restaurant.urls['pc']),
+                                ArticleScreen(url: restaurant.url),
                           ),
                         );
                       },
@@ -80,48 +56,49 @@ class CustomCardWidget extends HookWidget {
                 ),
                 onPressed: () async {
                   isGood.value = !isGood.value;
-
+                  final uid = FirebaseAuth.instance.currentUser!.uid;
+                  final db = FirebaseFirestore.instance;
                   if (isGood.value == true) {
-                    await FirebaseFirestore.instance
-                        .collection('users')
-                        .doc(FirebaseAuth.instance.currentUser!.uid)
-                        .update(
+                    await db.collection('users').doc(uid).update(
                       {
-                        'favoriteRestaurantsList': FieldValue.arrayUnion(
-                          [
-                            Restaurant(
-                              id: restaurant.id,
-                              name: restaurant.name,
-                              logoImage: restaurant.logoImage,
-                              urls: restaurant.urls,
-                            ).toJson(),
-                          ],
+                        // TODO: Cannot remove
+                        'favoritedRestaurants': FieldValue.arrayUnion(
+                          [restaurant.id],
                         ),
                       },
                     );
+                    // await db.collection('restaurants').doc(restaurant.id).set({
+                    //   'id': restaurant.id,
+                    //   'name': restaurant.name,
+                    //   'logoImage': restaurant.logoImage,
+                    //   'urls': restaurant.url,
+                    //   'favoritedUsers': [
+                    //     ...restaurant.favoritedUsers,
+                    //     myUserData
+                    //   ],
+                    // });
                   }
                   if (isGood.value == false) {
-                    await FirebaseFirestore.instance
-                        .collection('users')
-                        .doc(FirebaseAuth.instance.currentUser!.uid)
-                        .update(
+                    await db.collection('users').doc(uid).update(
                       {
-                        'favoriteRestaurantsList': FieldValue.arrayRemove(
-                          [
-                            Restaurant(
-                                    id: restaurant.id,
-                                    name: restaurant.name,
-                                    logoImage: restaurant.logoImage,
-                                    urls: restaurant.urls)
-                                .toJson()
-                          ],
+                        'favoritedestaurants': FieldValue.arrayRemove(
+                          [restaurant.id],
                         ),
                       },
                     );
+                    // await db.collection('restaurants').doc(restaurant.id).set({
+                    //   'id': restaurant.id,
+                    //   'name': restaurant.name,
+                    //   'logoImage': restaurant.logoImage,
+                    //   'urls': restaurant.url,
+                    //   'favoritedUsers': restaurant.favoritedUsers
+                    //       .where((favoritedUid) => favoritedUid != uid)
+                    //       .toList(),
+                    // });
                   }
                 },
               ),
-              const SizedBox(width: 25), // Add some right padding
+              const SizedBox(width: 25),
             ],
           ),
         ),

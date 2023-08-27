@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hackathon/pages/search_page.dart';
-import 'package:hackathon/pages/signup_page.dart';
 import 'pages/login_page.dart';
 import 'firebase_options.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:hackathon/widgets/matching_card.dart';
 import 'dart:async';
 
 Future<void> main() async {
@@ -28,8 +26,8 @@ class Start extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: loginPage(),
+    return const MaterialApp(
+      home: Config(),
     );
   }
 }
@@ -41,12 +39,14 @@ class Config extends HookWidget {
   Widget build(BuildContext context) {
     final isLogin = useState(false);
     useEffect(() {
+      // FirebaseAuth.instance.signOut();
       final currentUser = FirebaseAuth.instance.currentUser;
       if (currentUser != null) {
         isLogin.value = true;
       }
       return;
     });
-    return isLogin.value ? searchPage() : loginPage();
+
+    return isLogin.value ? const searchPage() : loginPage();
   }
 }

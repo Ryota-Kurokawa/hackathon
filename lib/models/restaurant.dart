@@ -10,7 +10,8 @@ class Restaurant with _$Restaurant {
     required String id,
     required String name,
     @JsonKey(name: 'logo_image') @Default("") String logoImage,
-    required dynamic urls,
+    required dynamic url,
+    @Default([]) List<String> favoritedUsers,
   }) = _Restaurant;
 
   factory Restaurant.fromJson(Map<String, Object?> json) =>

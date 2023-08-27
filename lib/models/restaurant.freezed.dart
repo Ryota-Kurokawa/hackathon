@@ -24,7 +24,8 @@ mixin _$Restaurant {
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'logo_image')
   String get logoImage => throw _privateConstructorUsedError;
-  dynamic get urls => throw _privateConstructorUsedError;
+  dynamic get url => throw _privateConstructorUsedError;
+  List<String> get favoritedUsers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +43,8 @@ abstract class $RestaurantCopyWith<$Res> {
       {String id,
       String name,
       @JsonKey(name: 'logo_image') String logoImage,
-      dynamic urls});
+      dynamic url,
+      List<String> favoritedUsers});
 }
 
 /// @nodoc
@@ -61,7 +63,8 @@ class _$RestaurantCopyWithImpl<$Res, $Val extends Restaurant>
     Object? id = null,
     Object? name = null,
     Object? logoImage = null,
-    Object? urls = freezed,
+    Object? url = freezed,
+    Object? favoritedUsers = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -76,10 +79,14 @@ class _$RestaurantCopyWithImpl<$Res, $Val extends Restaurant>
           ? _value.logoImage
           : logoImage // ignore: cast_nullable_to_non_nullable
               as String,
-      urls: freezed == urls
-          ? _value.urls
-          : urls // ignore: cast_nullable_to_non_nullable
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      favoritedUsers: null == favoritedUsers
+          ? _value.favoritedUsers
+          : favoritedUsers // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -96,7 +103,8 @@ abstract class _$$_RestaurantCopyWith<$Res>
       {String id,
       String name,
       @JsonKey(name: 'logo_image') String logoImage,
-      dynamic urls});
+      dynamic url,
+      List<String> favoritedUsers});
 }
 
 /// @nodoc
@@ -113,7 +121,8 @@ class __$$_RestaurantCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? logoImage = null,
-    Object? urls = freezed,
+    Object? url = freezed,
+    Object? favoritedUsers = null,
   }) {
     return _then(_$_Restaurant(
       id: null == id
@@ -128,10 +137,14 @@ class __$$_RestaurantCopyWithImpl<$Res>
           ? _value.logoImage
           : logoImage // ignore: cast_nullable_to_non_nullable
               as String,
-      urls: freezed == urls
-          ? _value.urls
-          : urls // ignore: cast_nullable_to_non_nullable
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      favoritedUsers: null == favoritedUsers
+          ? _value._favoritedUsers
+          : favoritedUsers // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -143,7 +156,9 @@ class _$_Restaurant with DiagnosticableTreeMixin implements _Restaurant {
       {required this.id,
       required this.name,
       @JsonKey(name: 'logo_image') this.logoImage = "",
-      required this.urls});
+      required this.url,
+      final List<String> favoritedUsers = const []})
+      : _favoritedUsers = favoritedUsers;
 
   factory _$_Restaurant.fromJson(Map<String, dynamic> json) =>
       _$$_RestaurantFromJson(json);
@@ -156,11 +171,19 @@ class _$_Restaurant with DiagnosticableTreeMixin implements _Restaurant {
   @JsonKey(name: 'logo_image')
   final String logoImage;
   @override
-  final dynamic urls;
+  final dynamic url;
+  final List<String> _favoritedUsers;
+  @override
+  @JsonKey()
+  List<String> get favoritedUsers {
+    if (_favoritedUsers is EqualUnmodifiableListView) return _favoritedUsers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_favoritedUsers);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Restaurant(id: $id, name: $name, logoImage: $logoImage, urls: $urls)';
+    return 'Restaurant(id: $id, name: $name, logoImage: $logoImage, url: $url, favoritedUsers: $favoritedUsers)';
   }
 
   @override
@@ -171,7 +194,8 @@ class _$_Restaurant with DiagnosticableTreeMixin implements _Restaurant {
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('logoImage', logoImage))
-      ..add(DiagnosticsProperty('urls', urls));
+      ..add(DiagnosticsProperty('url', url))
+      ..add(DiagnosticsProperty('favoritedUsers', favoritedUsers));
   }
 
   @override
@@ -183,13 +207,20 @@ class _$_Restaurant with DiagnosticableTreeMixin implements _Restaurant {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.logoImage, logoImage) ||
                 other.logoImage == logoImage) &&
-            const DeepCollectionEquality().equals(other.urls, urls));
+            const DeepCollectionEquality().equals(other.url, url) &&
+            const DeepCollectionEquality()
+                .equals(other._favoritedUsers, _favoritedUsers));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, logoImage,
-      const DeepCollectionEquality().hash(urls));
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      logoImage,
+      const DeepCollectionEquality().hash(url),
+      const DeepCollectionEquality().hash(_favoritedUsers));
 
   @JsonKey(ignore: true)
   @override
@@ -210,7 +241,8 @@ abstract class _Restaurant implements Restaurant {
       {required final String id,
       required final String name,
       @JsonKey(name: 'logo_image') final String logoImage,
-      required final dynamic urls}) = _$_Restaurant;
+      required final dynamic url,
+      final List<String> favoritedUsers}) = _$_Restaurant;
 
   factory _Restaurant.fromJson(Map<String, dynamic> json) =
       _$_Restaurant.fromJson;
@@ -223,7 +255,9 @@ abstract class _Restaurant implements Restaurant {
   @JsonKey(name: 'logo_image')
   String get logoImage;
   @override
-  dynamic get urls;
+  dynamic get url;
+  @override
+  List<String> get favoritedUsers;
   @override
   @JsonKey(ignore: true)
   _$$_RestaurantCopyWith<_$_Restaurant> get copyWith =>

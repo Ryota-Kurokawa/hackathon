@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hackathon/models/restaurant.dart';
 import 'package:hackathon/pages/search_page.dart';
-import 'package:hackathon/models/restaurant.dart';
 
 class firstProfilePage extends StatelessWidget {
   firstProfilePage({super.key});
@@ -17,7 +15,7 @@ class firstProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 0xFF, 0xAB, 0x91),
+      backgroundColor: const Color.fromARGB(255, 0xFF, 0xAB, 0x91),
       body: Center(
         child: Container(
           margin: const EdgeInsets.only(top: 10),
@@ -100,8 +98,8 @@ class firstProfilePage extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 40),
+              const Padding(
+                padding: EdgeInsets.only(top: 40),
               ),
               ElevatedButton(
                 onPressed: () async {
@@ -113,7 +111,7 @@ class firstProfilePage extends StatelessWidget {
                       _commentontCroller.text);
                   await Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => searchPage(),
+                      builder: (context) => const searchPage(),
                     ),
                   );
                 },
