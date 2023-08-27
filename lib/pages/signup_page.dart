@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon/pages/first_profile_page.dart';
-import 'package:hackathon/pages/search_page.dart';
 import 'package:hackathon/share/authenticator.dart';
 
 class SignupPage extends StatelessWidget {

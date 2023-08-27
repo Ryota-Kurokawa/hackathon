@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hackathon/models/restaurant.dart';
 import 'package:hackathon/pages/article_screen.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // void toggleFavorite() {
 //   setState(
@@ -16,16 +14,21 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 // }
 
 class CustomCardWidget extends HookWidget {
-  CustomCardWidget({super.key, required Restaurant this.restaurant});
+  const CustomCardWidget({
+    super.key,
+    required this.restaurant,
+    required this.isFavorited,
+  });
+
   final Restaurant restaurant;
-  // bool isFavorite = false;
+  final bool isFavorited;
 
   // final _iconProvider = StateProvider<bool>((ref) => false);
   // final _colorProvider = StateProvider((ref) => null);
 
   @override
   Widget build(BuildContext context) {
-    final isGood = useState<bool>(false);
+    final isGood = useState<bool>(isFavorited);
     return Center(
       child: Card(
         elevation: 4, // Optional: Add elevation for a shadow effect
@@ -45,6 +48,7 @@ class CustomCardWidget extends HookWidget {
               //   ),
               // ),
               Image.network(restaurant.logoImage),
+
               const SizedBox(
                   width:
                       16), // Add some space between the text and other elements
@@ -60,7 +64,7 @@ class CustomCardWidget extends HookWidget {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) =>
-                                ArticleScreen(url: restaurant.urls),
+                                ArticleScreen(url: restaurant.urls['pc']),
                           ),
                         );
                       },
@@ -76,10 +80,44 @@ class CustomCardWidget extends HookWidget {
                 ),
                 onPressed: () async {
                   isGood.value = !isGood.value;
-                  await FirebaseFirestore.instance
-                      .collection('users')
-                      .doc(FirebaseAuth.instance.currentUser!.uid)
-                      .update({'favoriteRestaurantsList': restaurant.id});
+
+                  if (isGood.value == true) {
+                    await FirebaseFirestore.instance
+                        .collection('users')
+                        .doc(FirebaseAuth.instance.currentUser!.uid)
+                        .update(
+                      {
+                        'favoriteRestaurantsList': FieldValue.arrayUnion(
+                          [
+                            Restaurant(
+                              id: restaurant.id,
+                              name: restaurant.name,
+                              logoImage: restaurant.logoImage,
+                              urls: restaurant.urls,
+                            ).toJson(),
+                          ],
+                        ),
+                      },
+                    );
+                  }
+                  if (isGood.value == false) {
+                    await FirebaseFirestore.instance
+                        .collection('users')
+                        .doc(FirebaseAuth.instance.currentUser!.uid)
+                        .update(
+                      {
+                        'favoriteRestaurantsList': FieldValue.arrayRemove(
+                          [
+                            Restaurant(
+                                id: restaurant.id,
+                                name: restaurant.name,
+                                logoImage: restaurant.logoImage,
+                                urls: restaurant.urls)
+                          ],
+                        ),
+                      },
+                    );
+                  }
                 },
               ),
               const SizedBox(width: 25), // Add some right padding
