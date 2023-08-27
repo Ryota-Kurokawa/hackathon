@@ -36,7 +36,7 @@ class searchPage extends HookConsumerWidget {
         gender: data['gender'],
         matchingGender: data['matchingGender'],
         favoritedRestaurants: List<String>.from(data['favoritedRestaurants']),
-        matchedUsers: List<String>.from(data['matchedUsers']),
+        matchedUsers: [],
       );
       print(user.toString());
       favoritedRestaurants.value = user.favoritedRestaurants;
