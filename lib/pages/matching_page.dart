@@ -95,7 +95,7 @@ class matchingPage extends HookConsumerWidget {
           Expanded(
             child: ListView(
               children: matchedUser.value
-                  .map((user) => MatchingCard(matchedUser: user))
+                  .map((user) => MatchingCard(user: user))
                   .toList(),
             ),
           ),
