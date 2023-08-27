@@ -11,7 +11,7 @@ _$_Restaurant _$$_RestaurantFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       name: json['name'] as String,
       logoImage: json['logo_image'] as String? ?? "",
-      urls: json['urls'],
+      urls: json['urls']['pc'],
     );
 
 Map<String, dynamic> _$$_RestaurantToJson(_$_Restaurant instance) =>
@@ -19,5 +19,5 @@ Map<String, dynamic> _$$_RestaurantToJson(_$_Restaurant instance) =>
       'id': instance.id,
       'name': instance.name,
       'logo_image': instance.logoImage,
-      'urls': instance.urls,
+      'urls': {'pc': instance.urls},
     };
