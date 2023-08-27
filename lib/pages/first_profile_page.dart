@@ -112,7 +112,6 @@ class firstProfilePage extends StatelessWidget {
                   await Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => const searchPage(),
-
                     ),
                   );
                 },
@@ -139,7 +138,7 @@ class firstProfilePage extends StatelessWidget {
       'matchingGender': matchingGender,
       'comment': comment,
       'email': FirebaseAuth.instance.currentUser!.email.toString(),
-      'favoriteRestaurantsList': []
+      'favoritedRestaurants': []
     });
   }
 }

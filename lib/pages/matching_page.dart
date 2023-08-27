@@ -30,7 +30,7 @@ class matchingPage extends HookConsumerWidget {
         gender: data['gender'],
         matchingGender: data['matchingGender'],
         favoritedRestaurants: List<String>.from(data['favoritedRestaurants']),
-        matchedUsers: List<String>.from(data['matchedUsers']),
+        matchedUsers: [],
       );
       print(user.toString());
       favoritedRestaurants.value = user.favoritedRestaurants;
@@ -48,6 +48,8 @@ class matchingPage extends HookConsumerWidget {
               comment: data['comment'],
               gender: data['gender'],
               matchingGender: data['matchingGender'],
+              favoritedRestaurants:
+                  List<String>.from(data['favoritedRestaurants']),
             ),
           )
           .toList();
@@ -58,17 +60,25 @@ class matchingPage extends HookConsumerWidget {
     Future<void> getMatchedUsers() async {
       for (final restaurant in favoritedRestaurants.value) {
         for (final user in allUsers.value) {
-          if (user.favoritedRestaurants.contains(restaurant)) {
+          print(restaurant);
+          print(user);
+
+          if (user.favoritedRestaurants.contains(restaurant) &&
+              !matchedUser.value.contains(user)) {
             matchedUser.value.add(user);
           }
         }
       }
     }
 
+    Future<void> loadData() async {
+      await fetchAllUsers();
+      await fetchUserData();
+      await getMatchedUsers();
+    }
+
     useEffect(() {
-      fetchAllUsers();
-      fetchUserData();
-      getMatchedUsers();
+      loadData();
       return;
     }, []);
 
