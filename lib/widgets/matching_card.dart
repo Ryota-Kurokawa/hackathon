@@ -39,9 +39,9 @@ class MatchingCard extends HookWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0), // 調整する必要があるかも
                       child: Text(
-                        user.name,
+                        user.name, // ここにタイトルのテキストを追加
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,

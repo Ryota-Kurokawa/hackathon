@@ -133,6 +133,7 @@ class ProfilePage extends StatelessWidget {
       'matchingGender': matchingGender,
       'comment': comment,
       'email': FirebaseAuth.instance.currentUser!.email.toString(),
+      'favoritedRestaurants': [],
     });
   }
 }

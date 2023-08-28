@@ -36,7 +36,7 @@ class searchPage extends HookConsumerWidget {
         gender: data['gender'],
         matchingGender: data['matchingGender'],
         favoritedRestaurants: List<String>.from(data['favoritedRestaurants']),
-        matchedUsers: List<String>.from(data['matchedUsers']),
+        matchedUsers: [],
       );
       print(user.toString());
       favoritedRestaurants.value = user.favoritedRestaurants;
@@ -82,7 +82,7 @@ class searchPage extends HookConsumerWidget {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => profileEditPage(),
+                builder: (context) => ProfileEditPage(),
               ),
             );
           },
@@ -132,16 +132,25 @@ class searchPage extends HookConsumerWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const successMatchingPage(),
-            ),
-          );
-        },
-        child: const Text('matching成功'),
-      ),
     );
+  }
+
+  Future<List<Restaurant>?> searchRestaurant(String keyword) async {
+    final String KEY = dotenv.env['HOT_PEPPER_KEY'] ?? '';
+
+    var url = Uri.https('webservice.recruit.co.jp', 'hotpepper/gourmet/v1/',
+        {'key': KEY, 'keyword': keyword, 'count': '20', 'format': 'json'});
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      final list = jsonDecode(response.body);
+      final restaurants = List<Restaurant>.from(
+        list['results']['shop'].map(
+          (model) => Restaurant.fromJson(model),
+        ),
+      );
+      return restaurants;
+    } else {
+      return [];
+    }
   }
 }
