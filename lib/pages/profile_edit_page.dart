@@ -50,7 +50,7 @@ class ProfileEditPage extends HookWidget {
       backgroundColor: const Color(0xffFFAB91),
       body: Center(
         child: Container(
-          height: 780,
+          height: 700,
           width: 300,
           decoration: BoxDecoration(
             color: Colors.white,
