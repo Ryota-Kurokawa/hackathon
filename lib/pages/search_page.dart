@@ -132,16 +132,6 @@ class searchPage extends HookConsumerWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const successMatchingPage(),
-            ),
-          );
-        },
-        child: const Text('matching成功'),
-      ),
     );
   }
 

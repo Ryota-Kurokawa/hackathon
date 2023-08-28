@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hackathon/pages/first_profile_page.dart';
 import 'package:hackathon/pages/search_page.dart';
 import 'package:hackathon/pages/signup_page.dart';
 import 'package:hackathon/share/authenticator.dart';
@@ -68,12 +67,12 @@ class loginPage extends StatelessWidget {
               if (_result == true) {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => searchPage(),
+                    builder: (context) => const searchPage(),
                   ),
                 );
               }
             },
-            child: Text(
+            child: const Text(
               'Login',
               style: TextStyle(
                 fontSize: 17,
