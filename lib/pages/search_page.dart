@@ -36,7 +36,7 @@ class searchPage extends HookConsumerWidget {
         gender: data['gender'],
         matchingGender: data['matchingGender'],
         favoritedRestaurants: List<String>.from(data['favoritedRestaurants']),
-        matchedUsers: List<String>.from(data['matchedUsers']),
+        matchedUsers: [],
       );
       print(user.toString());
       favoritedRestaurants.value = user.favoritedRestaurants;
@@ -131,16 +131,6 @@ class searchPage extends HookConsumerWidget {
             ),
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const successMatchingPage(),
-            ),
-          );
-        },
-        child: const Text('matching成功'),
       ),
     );
   }
