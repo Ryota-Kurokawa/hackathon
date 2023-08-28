@@ -81,7 +81,7 @@ class CustomCardWidget extends HookWidget {
                   if (isGood.value == false) {
                     await db.collection('users').doc(uid).update(
                       {
-                        'favoritedestaurants': FieldValue.arrayRemove(
+                        'favoritedRestaurants': FieldValue.arrayRemove(
                           [restaurant.id],
                         ),
                       },

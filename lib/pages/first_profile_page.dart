@@ -138,7 +138,7 @@ class firstProfilePage extends StatelessWidget {
       'matchingGender': matchingGender,
       'comment': comment,
       'email': FirebaseAuth.instance.currentUser!.email.toString(),
-      'favoriteRestaurantsList': []
+      'favoritedRestaurants': []
     });
   }
 }
