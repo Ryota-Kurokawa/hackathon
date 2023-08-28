@@ -88,16 +88,6 @@ class matchingPage extends HookConsumerWidget {
           'マッチング候補',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.account_balance_outlined),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.message_outlined),
-          ),
-        ],
         backgroundColor: const Color.fromARGB(255, 215, 199, 47),
       ),
       body: Column(
