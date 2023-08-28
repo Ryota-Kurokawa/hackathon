@@ -144,4 +144,23 @@ class searchPage extends HookConsumerWidget {
       ),
     );
   }
+
+  Future<List<Restaurant>?> searchRestaurant(String keyword) async {
+    final String KEY = dotenv.env['HOT_PEPPER_KEY'] ?? '';
+
+    var url = Uri.https('webservice.recruit.co.jp', 'hotpepper/gourmet/v1/',
+        {'key': KEY, 'keyword': keyword, 'count': '20', 'format': 'json'});
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      final list = jsonDecode(response.body);
+      final restaurants = List<Restaurant>.from(
+        list['results']['shop'].map(
+          (model) => Restaurant.fromJson(model),
+        ),
+      );
+      return restaurants;
+    } else {
+      return [];
+    }
+  }
 }
