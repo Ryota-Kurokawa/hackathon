@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hackathon/models/restaurant.dart';
 import 'package:hackathon/models/user.dart';
 
 class MyWidget extends StatelessWidget {
@@ -14,6 +15,7 @@ class MyWidget extends StatelessWidget {
 
 class MatchingCard extends HookWidget {
   const MatchingCard({super.key, required this.user});
+
   final UserData user;
 
   @override
@@ -39,9 +41,9 @@ class MatchingCard extends HookWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0), // 調整する必要があるかも
                       child: Text(
-                        user.name,
+                        user.name, // ここにタイトルのテキストを追加
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
